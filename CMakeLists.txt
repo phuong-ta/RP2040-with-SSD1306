@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.12)
 
 # Include build functions from Pico SDK
-include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
+include(pico_sdk_import.cmake)
 
 # Set name of project (as PROJECT_NAME) and C/C   standards
 project(SSD1306 C CXX ASM)
@@ -21,6 +21,7 @@ add_compile_options(-Wall
 # Tell CMake where to find the executable source file
 add_executable(${PROJECT_NAME} 
     main.c
+    ssd1306/ssd1306.c
 )
 
 # Create map/bin/hex/uf2 files
@@ -34,7 +35,9 @@ target_link_libraries(${PROJECT_NAME}
     hardware_adc
 
 )
-target_include_directories(${PROJECT_NAME}  PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(${PROJECT_NAME}  
+    PRIVATE ${CMAKE_CURRENT_LIST_DIR}
+)
 
 # Enable usb output, disable uart output
 pico_enable_stdio_usb(${PROJECT_NAME} 1)
