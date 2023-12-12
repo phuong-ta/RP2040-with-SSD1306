@@ -1,1 +1,1 @@
-# RB2040-with-SS1306
+# RP2040-with-SSD1306
